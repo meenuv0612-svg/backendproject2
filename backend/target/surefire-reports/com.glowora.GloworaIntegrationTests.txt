@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.glowora.GloworaIntegrationTests
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.56 s -- in com.glowora.GloworaIntegrationTests
