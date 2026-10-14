@@ -21,12 +21,13 @@ public class DatabaseConnectionFailureAnalyzer extends AbstractFailureAnalyzer<S
 
         String action =
                 "Please verify the following PostgreSQL setup steps:\n" +
-                "  1. Ensure PostgreSQL server is installed and running on localhost:5432.\n" +
-                "  2. Ensure the database 'glowora_db' exists:\n" +
-                "       psql -U postgres -h localhost -p 5432 -c \"CREATE DATABASE glowora_db;\"\n" +
-                "  3. Verify the credentials in backend/src/main/resources/application.properties or set DB_PASSWORD:\n" +
-                "       Username: postgres\n" +
-                "       Password: ${DB_PASSWORD:MEENU}\n" +
+                "  1. If connecting to Railway from Local PC, use DATABASE_PUBLIC_URL (from Railway Postgres Variables),\n" +
+                "     as postgres.railway.internal is only resolvable inside Railway's internal cloud network.\n" +
+                "  2. If running locally with local PostgreSQL:\n" +
+                "     - Ensure PostgreSQL service is running on localhost:5432.\n" +
+                "     - Ensure the database 'glowora_db' exists: CREATE DATABASE glowora_db;\n" +
+                "  3. If running on Railway:\n" +
+                "     - Ensure DATABASE_URL is set or referenced (${{Postgres.DATABASE_URL}}).\n" +
                 "  4. Restart the Spring Boot application with: mvn spring-boot:run";
 
         return new FailureAnalysis(description, action, cause);

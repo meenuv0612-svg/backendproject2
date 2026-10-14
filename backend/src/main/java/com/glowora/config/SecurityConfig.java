@@ -132,11 +132,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Explicit local development origins including localhost, 127.0.0.1, and file:// ("null")
+        // Allow local development, Railway domains, Vercel, Netlify, and wildcard origins
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:*",
                 "http://127.0.0.1:*",
-                "null"
+                "https://*.railway.app",
+                "https://*.up.railway.app",
+                "https://*.vercel.app",
+                "https://*.netlify.app",
+                "*"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "X-Auth-Token", "Content-Type", "Accept", "Origin", "X-Requested-With"));
